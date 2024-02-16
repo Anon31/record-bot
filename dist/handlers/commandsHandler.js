@@ -23,7 +23,9 @@ module.exports = (client) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(`✅  The ${command === null || command === void 0 ? void 0 : command.name} command was loaded correctly !!!`, body);
         client.slashCommands.set(command === null || command === void 0 ? void 0 : command.name, command);
     });
-    const rest = new discord_js_1.REST({ version: '10' }).setToken(process.env.TOKEN);
+    // Construct and prepare an instance of the REST module
+    const rest = new discord_js_1.REST().setToken(process.env.TOKEN);
+    // Add and deploy your commands to the Discord application!
     try {
         yield rest.put(discord_js_1.Routes.applicationCommands(process.env.APPLICATION_ID), { body });
     }

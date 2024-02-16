@@ -15,7 +15,7 @@ exports.command = {
     name: 'record',
     data: new discord_js_1.SlashCommandBuilder()
         .setName('record')
-        .setDescription('Lance l\'enregistrement d\'un message vocal'),
+        .setDescription('Lance l\'enregistrement d\'un message vocal 🎙️'),
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             yield interaction.reply({
