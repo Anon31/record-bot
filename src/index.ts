@@ -1,9 +1,9 @@
-import {Client, Collection, Events, GatewayIntentBits} from 'discord.js';
-import * as dotenv                                     from 'dotenv';
-import * as fs                                         from 'fs';
-import {readdirSync}                                   from 'node:fs';
-import {join}                                          from 'node:path';
-import {SlashCommand}                                  from './interfaces/slash-command.interface';
+import {Client, Collection, GatewayIntentBits} from 'discord.js';
+import * as dotenv                             from 'dotenv';
+import * as fs                                 from 'fs';
+import {readdirSync}                           from 'node:fs';
+import {join}                                  from 'node:path';
+import {SlashCommand}                          from './interfaces/slash-command.interface';
 
 const recordsFolder = './data/';
 const handlersDirs = join(__dirname, './handlers');

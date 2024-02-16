@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_path_1 = require("node:path");
+const discord_js_1 = require("discord.js");
 const fs_1 = require("fs");
 module.exports = (client) => __awaiter(void 0, void 0, void 0, function* () {
     const body = [];
@@ -19,13 +20,14 @@ module.exports = (client) => __awaiter(void 0, void 0, void 0, function* () {
             return;
         const command = require(`${slashCommandsDir}/${file}`).command;
         body.push(command === null || command === void 0 ? void 0 : command.data.toJSON());
-        console.log('Body:', body);
+        console.log(`✅  The ${command === null || command === void 0 ? void 0 : command.name} command was loaded correctly !!!`, body);
         client.slashCommands.set(command === null || command === void 0 ? void 0 : command.name, command);
     });
-    // const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
-    // try {
-    // 	await rest.put(Routes.applicationCommands(process.env.APPLICATION_ID), {body});
-    // } catch (error) {
-    // 	console.error(error);
-    // }
+    const rest = new discord_js_1.REST({ version: '10' }).setToken(process.env.TOKEN);
+    try {
+        yield rest.put(discord_js_1.Routes.applicationCommands(process.env.APPLICATION_ID), { body });
+    }
+    catch (error) {
+        console.error(error);
+    }
 });

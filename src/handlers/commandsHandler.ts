@@ -1,7 +1,7 @@
-import {Client, REST, Routes} from 'discord.js';
-import {join}         from 'node:path';
-import {readdirSync} from 'fs';
 import {SlashCommand} from '../interfaces/slash-command.interface';
+import {join}         from 'node:path';
+import {Client, REST, Routes} from 'discord.js';
+import {readdirSync}  from 'fs';
 
 module.exports = async (client: Client) => {
 	const body = [];
@@ -13,15 +13,17 @@ module.exports = async (client: Client) => {
 		const command: SlashCommand = require(`${slashCommandsDir}/${file}`).command;
 
 		body.push(command?.data.toJSON());
-		console.log('Body:', body);
+		console.log(`✅  The ${command?.name} command was loaded correctly !!!`, body);
 		client.slashCommands.set(command?.name, command);
 	});
 
-	// const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
+	// Register the commands
+	const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
 
-	// try {
-	// 	await rest.put(Routes.applicationCommands(process.env.APPLICATION_ID), {body});
-	// } catch (error) {
-	// 	console.error(error);
-	// }
+	try {
+		// Add the commands to the Discord application
+		await rest.put(Routes.applicationCommands(process.env.APPLICATION_ID), {body});
+	} catch (error) {
+		console.error(error);
+	}
 }

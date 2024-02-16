@@ -15,6 +15,6 @@ module.exports = (client: Client) => {
 			? client.once(event.name, (...args: any[]) => event.execute(...args))
 			: client.on(event.name, (...args: any[]) => event.execute(...args));
 
-		console.log(`✅  The ${event.name} event was loaded correctly !!!`);
+		console.log(`✅  The "${event.name}" event was loaded correctly !!!`);
 	});
 }

@@ -1,4 +1,4 @@
-import {BotEvent}                    from '../interfaces/bot-event.interface';
+import {BotEvent}            from '../interfaces/bot-event.interface';
 import {Events, Interaction} from 'discord.js';
 
 const event: BotEvent = {
