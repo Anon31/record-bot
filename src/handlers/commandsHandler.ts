@@ -17,11 +17,10 @@ module.exports = async (client: Client) => {
 		client.slashCommands.set(command?.name, command);
 	});
 
-	// Register the commands
-	const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
-
+	// Construct and prepare an instance of the REST module
+	const rest = new REST().setToken(process.env.TOKEN);
+	// Add and deploy your commands to the Discord application!
 	try {
-		// Add the commands to the Discord application
 		await rest.put(Routes.applicationCommands(process.env.APPLICATION_ID), {body});
 	} catch (error) {
 		console.error(error);

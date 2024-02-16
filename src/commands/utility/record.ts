@@ -5,7 +5,7 @@ export const command: SlashCommand = {
 	name: 'record',
 	data: new SlashCommandBuilder()
 	.setName('record')
-	.setDescription('Lance l\'enregistrement d\'un message vocal'),
+	.setDescription('Lance l\'enregistrement d\'un message vocal 🎙️'),
 	async execute(interaction: any) {
 		await interaction.reply({
 			embeds: [
