@@ -21,25 +21,24 @@ export const command = {
 	// 		  .setDescription('The channel to echo into')),
 	async execute(interaction) {
 		if (interaction.commandName === 'start_record') {
+
 			const voiceChannel = await interaction.member.voice.channel;
+
 			// Check if the user is in a voice channel
 			if (!voiceChannel) {
 				return await interaction.reply(
 					{
-						content: 'Vous devez entrer dans un canal vocal avant d\'utiliser la commande',
+						embeds: [
+							new EmbedBuilder()
+							.setAuthor({name: '⛔'})
+							.setDescription(`Vous devez être dans un canal vocal pour utiliser cette commande`)
+							.setColor('Red')
+						],
 						ephemeral: true
 					}
 				)
 			}
 
-			// Get the voice connection of the bot
-			// const connection = joinVoiceChannel({
-			// 	channelId: voiceChannel.id,
-			// 	guildId: interaction.member.guild.id,
-			// 	adapterCreator: interaction.member.guild.voiceAdapterCreator,
-			// });
-
-			// console.log('START', interaction.member.guild.voiceStates);
 			// // Get the voice connection of the bot
 			// const connection = joinVoiceChannel({
 			// 	channelId: interaction.member.guild.voiceStates.channelId,
