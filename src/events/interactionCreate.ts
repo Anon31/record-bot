@@ -1,4 +1,4 @@
-import {BotEvent}            from '../interfaces/bot-event.interface';
+import {BotEvent}                    from '../interfaces/bot-event.interface';
 import {Events, Interaction} from 'discord.js';
 
 const event: BotEvent = {
@@ -7,7 +7,7 @@ const event: BotEvent = {
 	async execute(interaction: Interaction) {
 		if (!interaction.isChatInputCommand()) return;
 
-		const command = interaction.client.slashCommands.get(interaction.commandName);
+		const command = interaction.client.commands.get(interaction.commandName);
 
 		if (!command) return;
 

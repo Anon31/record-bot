@@ -1,12 +1,12 @@
+import {SlashCommand}                          from './interfaces/slash-command.interface';
 import {Client, Collection, GatewayIntentBits} from 'discord.js';
+import {join}                                  from 'node:path';
+import {readdirSync}                           from 'node:fs';
 import * as dotenv                             from 'dotenv';
 import * as fs                                 from 'fs';
-import {readdirSync}                           from 'node:fs';
-import {join}                                  from 'node:path';
-import {SlashCommand}                          from './interfaces/slash-command.interface';
 
 const recordsFolder = './data/';
-const handlersDirs = join(__dirname, './handlers');
+const handlersFolder = join(__dirname, './handlers');
 
 dotenv.config();
 
@@ -22,15 +22,15 @@ const client = new Client({
 	]
 })
 
-client.slashCommands = new Collection<string, SlashCommand>();
+client.commands = new Collection<string, SlashCommand>();
 
 // Create the records folder if not exist
 if (!fs.existsSync(recordsFolder)) {
 	fs.mkdirSync(recordsFolder);
 }
 
-readdirSync(handlersDirs).forEach(file => {
-	require(`${handlersDirs}/${file}`)(client);
+readdirSync(handlersFolder).forEach(file => {
+	require(`${handlersFolder}/${file}`)(client);
 });
 
 // Log in to Discord with your client's token

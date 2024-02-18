@@ -1,7 +1,6 @@
-import {SlashCommand}                      from '../../interfaces/slash-command.interface';
 import {EmbedBuilder, SlashCommandBuilder} from 'discord.js';
 
-export const command: SlashCommand = {
+export const command = {
 	name: 'ping',
 	data: new SlashCommandBuilder()
 	.setName('ping')

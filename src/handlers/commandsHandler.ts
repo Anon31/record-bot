@@ -1,20 +1,20 @@
 import {SlashCommand} from '../interfaces/slash-command.interface';
-import {join}         from 'node:path';
 import {Client, REST, Routes} from 'discord.js';
+import {join}         from 'node:path';
 import {readdirSync}  from 'fs';
 
 module.exports = async (client: Client) => {
 	const body = [];
-	const slashCommandsDir = join(__dirname, '../commands/utility');
+	const commandsFolder = join(__dirname, '../commands/utility');
 
-	readdirSync(slashCommandsDir).forEach(file => {
+	readdirSync(commandsFolder).forEach(file => {
 		if (!file.endsWith('.js')) return;
 
-		const command: SlashCommand = require(`${slashCommandsDir}/${file}`).command;
+		const command: SlashCommand = require(`${commandsFolder}/${file}`).command;
 
 		body.push(command?.data.toJSON());
 		console.log(`✅  The ${command?.name} command was loaded correctly !!!`, body);
-		client.slashCommands.set(command?.name, command);
+		client.commands.set(command?.name, command);
 	});
 
 	// Construct and prepare an instance of the REST module
